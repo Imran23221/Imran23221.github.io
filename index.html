@@ -3,78 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imran's Core Hub</title>
+    <title>Sentron Core // Network Matrix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght=500;700;900&family=Inter:wght=300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --bg: #050206;
-            --accent: #ec4899;
-            --card-bg: rgba(18, 10, 22, 0.8);
-            --text: #ffffff;
+            --bg-dark: #050206;
+            --bg-panel: rgba(18, 10, 22, 0.8);
+            --pink-bright: #ec4899;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --safe-green: #10b981;
         }
-        body { 
-            background-color: var(--bg); 
-            color: var(--text); 
-            font-family: 'Segoe UI', sans-serif; 
-            padding: 50px; 
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 24px;
+            background-image: radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
         }
-        .hub-title { 
-            font-size: 3rem; 
-            margin-bottom: 50px; 
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 10px;
-        }
-        .project-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-            width: 100%;
-            max-width: 1000px;
-        }
-        .project-card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--accent); 
-            padding: 30px; 
-            border-radius: 15px; 
-            text-decoration: none; 
-            color: var(--text);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-align: center;
-        }
-        .project-card:hover { 
-            transform: scale(1.05); 
-            background: #25121e;
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
-        }
-        .project-card h3 { 
-            color: var(--accent); 
-            font-size: 1.5rem; 
-            margin-top: 0; 
-        }
+        .ui-font { font-family: 'Orbitron', sans-serif; letter-spacing: 0.05em; }
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(236, 72, 153, 0.2); padding-bottom: 20px; margin-bottom: 24px; }
+        .brand-zone h1 { font-size: 1.8rem; background: linear-gradient(135deg, var(--pink-bright), #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; }
+        .panel { background: var(--bg-panel); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 16px; padding: 24px; }
+        .panel-header { color: var(--pink-bright); font-weight: 700; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        
+        /* Interactive Elements */
+        .project-link { display: block; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 16px; border-radius: 12px; margin-bottom: 12px; color: white; text-decoration: none; transition: 0.3s; }
+        .project-link:hover { border-color: var(--pink-bright); background: rgba(236, 72, 153, 0.1); }
+        
+        .tx-row { display: grid; grid-template-columns: 1fr 2fr 1fr; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .tx-id { color: var(--pink-bright); font-weight: bold; }
+        .status-pill { padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; background: rgba(16, 185, 129, 0.1); color: var(--safe-green); }
     </style>
 </head>
 <body>
-    <h1 class="hub-title">CORE SYSTEM HUB</h1>
-    
-    <div class="project-grid">
-        <a href="https://imran23221.github.io/sentron-smash/" class="project-card">
-            <h3>Sentron Smash</h3>
-            <p>Access the main game engine dashboard.</p>
-        </a>
-        <a href="https://imran23221.github.io/sentron-survival/" class="project-card">
-            <h3>Sentron Survival</h3>
-            <p>Core survival module simulation.</p>
-        </a>
-        <a href="https://imran23221.github.io/sentron-survival-mobile/" class="project-card">
-            <h3>Sentron Survival Mobile</h3>
-            <p>Mobile-optimized survival build.</p>
-        </a>
+
+    <header>
+        <div class="brand-zone">
+            <h1 class="ui-font">SENTRON CORE v4.0</h1>
+            <p>ACTIVE INTERFACE // NETWORK MONITOR</p>
+        </div>
+        <div class="status-pill">● SYSTEM OPERATIONAL</div>
+    </header>
+
+    <div class="dashboard-grid">
+        <div class="panel">
+            <div class="panel-header ui-font">PROJECT ACCESS</div>
+            <a href="https://imran23221.github.io/sentron-smash/" class="project-link">Sentron Smash</a>
+            <a href="https://imran23221.github.io/sentron-survival/" class="project-link">Sentron Survival</a>
+            <a href="https://imran23221.github.io/sentron-survival-mobile/" class="project-link">Sentron Survival Mobile</a>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header ui-font">LIVE NETWORK STREAM</div>
+            <div id="tx-box">
+                <div class="tx-row"><div class="tx-id">TX-001</div><div>System heartbeat pulse detected</div><div class="status-pill">SECURE</div></div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Simple client-side stream generator
+        const txBox = document.getElementById('tx-box');
+        function addEvent() {
+            const row = document.createElement('div');
+            row.className = 'tx-row';
+            row.innerHTML = `<div class="tx-id">TX-${Math.floor(Math.random()*900)}</div><div>Node synchronization verified</div><div class="status-pill">ACTIVE</div>`;
+            txBox.prepend(row);
+            if (txBox.children.length > 5) txBox.removeChild(txBox.lastChild);
+        }
+        setInterval(addEvent, 3000);
+    </script>
 </body>
 </html>
