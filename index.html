@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentron Core // Network Matrix</title>
+    <title>Sentron Firewall AI // Secure Agent Matrix</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght=500;700;900&family=Inter:wght=300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         :root {
             --bg-dark: #050206;
             --bg-panel: rgba(18, 10, 22, 0.8);
+            --pink-glow: #f43f5e;
             --pink-bright: #ec4899;
+            --pink-dim: #9d174d;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --safe-green: #10b981;
@@ -20,62 +26,377 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             padding: 24px;
-            background-image: radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.12) 0px, transparent 40%),
+                radial-gradient(at 0% 100%, rgba(244, 63, 94, 0.08) 0px, transparent 50%);
         }
-        .ui-font { font-family: 'Orbitron', sans-serif; letter-spacing: 0.05em; }
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(236, 72, 153, 0.2); padding-bottom: 20px; margin-bottom: 24px; }
-        .brand-zone h1 { font-size: 1.8rem; background: linear-gradient(135deg, var(--pink-bright), #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .dashboard-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; }
-        .panel { background: var(--bg-panel); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 16px; padding: 24px; }
-        .panel-header { color: var(--pink-bright); font-weight: 700; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .ui-font {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- HEADER CONTROL LINE --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(236, 72, 153, 0.2);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+        .brand-zone h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--pink-bright), #f43f5e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.2);
+        }
+        .brand-zone p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .status-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--safe-green);
+            color: var(--safe-green);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+        }
+
+        /* --- MAIN GRID LAYOUT --- */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 24px;
+            flex: 1;
+        }
+        @media (max-width: 900px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- DASHBOARD PANELS --- */
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid rgba(236, 72, 153, 0.15);
+            border-radius: 16px;
+            backdrop-filter: blur(16px);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        .panel-header {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--pink-bright);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 8px;
+        }
+
+        /* --- INTERACTIVE AI AGENT MODULE --- */
+        .agent-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .agent-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        .agent-intellect {
+            background: rgba(236, 72, 153, 0.05);
+            border-left: 3px solid var(--pink-bright);
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* --- TRANSACTION MONITOR MODULE --- */
+        .transaction-stream {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 480px;
+            padding-right: 8px;
+        }
+        .transaction-stream::-webkit-scrollbar {
+            width: 6px;
+        }
+        .transaction-stream::-webkit-scrollbar-thumb {
+            background: rgba(236, 72, 153, 0.2);
+            border-radius: 3px;
+        }
+        .tx-row {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr 1fr 1fr;
+            align-items: center;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            animation: slideIn 0.30s ease-out;
+            transition: all 0.2s ease;
+        }
+        .tx-row:hover {
+            background: rgba(236, 72, 153, 0.03);
+            border-color: rgba(236, 72, 153, 0.15);
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tx-id {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--pink-bright);
+            font-weight: bold;
+        }
+        .tx-intent {
+            color: var(--text-main);
+        }
+        .tx-amount {
+            font-weight: 600;
+            text-align: right;
+            padding-right: 15px;
+        }
+        .tx-verdict {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+        .verdict-passed {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--safe-green);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .verdict-blocked {
+            background: rgba(244, 63, 94, 0.1);
+            color: var(--pink-glow);
+            border: 1px solid rgba(244, 63, 94, 0.2);
+        }
+
+        /* --- METRICS ROW --- */
+        .metric-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .mini-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(236, 72, 153, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        .mini-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .mini-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
         
-        /* Interactive Elements */
-        .project-link { display: block; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 16px; border-radius: 12px; margin-bottom: 12px; color: white; text-decoration: none; transition: 0.3s; }
-        .project-link:hover { border-color: var(--pink-bright); background: rgba(236, 72, 153, 0.1); }
-        
-        .tx-row { display: grid; grid-template-columns: 1fr 2fr 1fr; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .tx-id { color: var(--pink-bright); font-weight: bold; }
-        .status-pill { padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; background: rgba(16, 185, 129, 0.1); color: var(--safe-green); }
+        .hub-btn {
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid var(--pink-bright);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .hub-btn:hover {
+            background: var(--pink-bright);
+            box-shadow: 0 0 15px var(--pink-bright);
+        }
     </style>
 </head>
 <body>
 
     <header>
         <div class="brand-zone">
-            <h1 class="ui-font">SENTRON CORE v4.0</h1>
-            <p>ACTIVE INTERFACE // NETWORK MONITOR</p>
+            <h1 class="ui-font">SENTRON FIREWALL v4.0</h1>
+            <p>AI-POWERED INTENT NETWORK GUARD // CRYPTO AND AGENT GATEWAY</p>
         </div>
-        <div class="status-pill">● SYSTEM OPERATIONAL</div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <a href="https://imran23221.github.io/" class="hub-btn ui-font">⚡ CORE HUB</a>
+            <div class="status-badge ui-font" id="global-status">🛡️ ONLINE</div>
+        </div>
     </header>
 
-    <div class="dashboard-grid">
-        <div class="panel">
-            <div class="panel-header ui-font">PROJECT ACCESS</div>
-            <a href="https://imran23221.github.io/sentron-smash/" class="project-link">Sentron Smash</a>
-            <a href="https://imran23221.github.io/sentron-survival/" class="project-link">Sentron Survival</a>
-            <a href="https://imran23221.github.io/sentron-survival-mobile/" class="project-link">Sentron Survival Mobile</a>
+    <div class="metric-mini-grid ui-font">
+        <div class="mini-card">
+            <div class="mini-label">Scanned Intents</div>
+            <div class="mini-value" id="count-scanned">1,482</div>
         </div>
-
-        <div class="panel">
-            <div class="panel-header ui-font">LIVE NETWORK STREAM</div>
-            <div id="tx-box">
-                <div class="tx-row"><div class="tx-id">TX-001</div><div>System heartbeat pulse detected</div><div class="status-pill">SECURE</div></div>
-            </div>
+        <div class="mini-card" style="border-color: rgba(16, 185, 129, 0.3);">
+            <div class="mini-label">Cleared Transactions</div>
+            <div class="mini-value" style="color: var(--safe-green);" id="count-cleared">1,475</div>
+        </div>
+        <div class="mini-card" style="border-color: rgba(244, 63, 94, 0.3);">
+            <div class="mini-label">Malicious Blocks</div>
+            <div class="mini-value" style="color: var(--pink-glow);" id="count-blocked">7</div>
         </div>
     </div>
 
+    <div class="dashboard-grid">
+        
+        <div class="panel">
+            <div class="panel-header ui-font">
+                <span>SECURE AGENT INSTANCES</span>
+                <span style="font-size: 0.75rem; color: var(--safe-green);">● ACTIVE</span>
+            </div>
+            
+            <div class="agent-card">
+                <div class="agent-meta">
+                    <strong style="color: #ffffff;">Agent_Alpha</strong>
+                    <span style="color: var(--pink-bright);">Intent Verification</span>
+                </div>
+                <div class="agent-intellect">
+                    Analyzing block signatures and mapping request verification graphs to secure terminal requests.
+                </div>
+            </div>
+
+            <div class="agent-card" style="margin-bottom: 0;">
+                <div class="agent-meta">
+                    <strong style="color: #ffffff;">Agent_Omega</strong>
+                    <span style="color: var(--pink-bright);">Liquidity Shield</span>
+                </div>
+                <div class="agent-intellect">
+                    Scanning transaction values and tracking cross-node asset streams for anomaly overrides.
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header ui-font">
+                <span>INTENT-DRIVEN TRANSACTION MONITOR Stream</span>
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: normal;">Updates Live</span>
+            </div>
+
+            <div class="transaction-stream" id="tx-injection-box">
+                <div class="tx-row">
+                    <div class="tx-id">TX-9402</div>
+                    <div class="tx-intent">Query public smart contract telemetry</div>
+                    <div class="tx-amount">0.00 ETH</div>
+                    <div class="tx-verdict verdict-passed">Passed</div>
+                </div>
+                <div class="tx-row">
+                    <div class="tx-id">TX-9401</div>
+                    <div class="tx-intent">Authorize decentralized node node pool vault</div>
+                    <div class="tx-amount">4.50 ETH</div>
+                    <div class="tx-verdict verdict-passed">Passed</div>
+                </div>
+                <div class="tx-row">
+                    <div class="tx-id">TX-9400</div>
+                    <div class="tx-intent">Force memory buffer loop payload injection</div>
+                    <div class="tx-amount">128.0 ETH</div>
+                    <div class="tx-verdict verdict-blocked">Blocked</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <script>
-        // Simple client-side stream generator
-        const txBox = document.getElementById('tx-box');
-        function addEvent() {
+        let totalScanned = 1482;
+        let totalCleared = 1475;
+        let totalBlocked = 7;
+
+        const intentsPool = [
+            { desc: "Execute peer-to-peer asset swap allocation", amt: "0.85 ETH", bad: false },
+            { desc: "Request temporary secure validation key token", amt: "0.00 ETH", bad: false },
+            { desc: "Initiate decentralized protocol micro-withdrawal", amt: "1.20 ETH", bad: false },
+            { desc: "Bypass verification state authorization array", amt: "450.5 ETH", bad: true },
+            { desc: "Synchronize master cloud database index parameters", amt: "0.00 ETH", bad: false },
+            { desc: "Deploy encrypted smart contract logic package", amt: "0.15 ETH", bad: false },
+            { desc: "Inject recursive overhead memory corruption script", amt: "88.12 ETH", bad: true },
+            { desc: "Query distributed consensus ledger history status", amt: "0.00 ETH", bad: false }
+        ];
+
+        function generateLiveTransaction() {
+            totalScanned++;
+            const targetBox = document.getElementById('tx-injection-box');
+            const randomSample = intentsPool[Math.floor(Math.random() * intentsPool.length)];
+            const uniqueId = Math.floor(Math.random() * 8999) + 1000;
+
+            if (randomSample.bad) {
+                totalBlocked++;
+            } else {
+                totalCleared++;
+            }
+
+            // Update DOM metrics counters
+            document.getElementById('count-scanned').innerText = totalScanned.toLocaleString();
+            document.getElementById('count-cleared').innerText = totalCleared.toLocaleString();
+            document.getElementById('count-blocked').innerText = totalBlocked.toLocaleString();
+
+            // Create row component element
             const row = document.createElement('div');
             row.className = 'tx-row';
-            row.innerHTML = `<div class="tx-id">TX-${Math.floor(Math.random()*900)}</div><div>Node synchronization verified</div><div class="status-pill">ACTIVE</div>`;
-            txBox.prepend(row);
-            if (txBox.children.length > 5) txBox.removeChild(txBox.lastChild);
+            row.innerHTML = `
+                <div class="tx-id">TX-${uniqueId}</div>
+                <div class="tx-intent">${randomSample.desc}</div>
+                <div class="tx-amount">${randomSample.amt}</div>
+                <div class="tx-verdict ${randomSample.bad ? 'verdict-blocked' : 'verdict-passed'}">
+                    ${randomSample.bad ? 'Blocked' : 'Passed'}
+                </div>
+            `;
+
+            // Insert to top of container and trim bottom rows to keep it smooth
+            targetBox.insertBefore(row, targetBox.firstChild);
+            if (targetBox.children.length > 25) {
+                targetBox.removeChild(targetBox.lastChild);
+            }
+
+            // Flash firewall badge if block occurs
+            if (randomSample.bad) {
+                const badge = document.getElementById('global-status');
+                badge.innerText = "⚠️ BREACH BLOCKED";
+                badge.style.background = "rgba(244, 63, 94, 0.2)";
+                badge.style.color = "var(--pink-glow)";
+                badge.style.borderColor = "var(--pink-glow)";
+                
+                setTimeout(() => {
+                    badge.innerText = "🛡️ ONLINE";
+                    badge.style.background = "rgba(16, 185, 129, 0.1)";
+                    badge.style.color = "var(--safe-green)";
+                    badge.style.borderColor = "var(--safe-green)";
+                }, 900);
+            }
         }
-        setInterval(addEvent, 3000);
+
+        // Loop execution matrix configuration (Generates transaction items periodically)
+        setInterval(generateLiveTransaction, 3500);
     </script>
 </body>
 </html>
