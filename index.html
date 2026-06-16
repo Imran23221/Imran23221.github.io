@@ -282,7 +282,7 @@
                     <span style="color: var(--pink-bright);">Intent Verification</span>
                 </div>
                 <div class="agent-intellect">
-                    Analyzing block signatures and mapping request verification graphs to secure terminal requests.
+                    Analyzing block signatures and mapping request verification graphs.
                 </div>
             </div>
 
@@ -312,7 +312,7 @@
                 </div>
                 <div class="tx-row">
                     <div class="tx-id">TX-9401</div>
-                    <div class="tx-intent">Authorize decentralized node node pool vault</div>
+                    <div class="tx-intent">Authorize decentralized node pool vault</div>
                     <div class="tx-amount">4.50 ETH</div>
                     <div class="tx-verdict verdict-passed">Passed</div>
                 </div>
@@ -355,12 +355,10 @@
                 totalCleared++;
             }
 
-            // Update DOM metrics counters
             document.getElementById('count-scanned').innerText = totalScanned.toLocaleString();
             document.getElementById('count-cleared').innerText = totalCleared.toLocaleString();
             document.getElementById('count-blocked').innerText = totalBlocked.toLocaleString();
 
-            // Create row component element
             const row = document.createElement('div');
             row.className = 'tx-row';
             row.innerHTML = `
@@ -372,13 +370,11 @@
                 </div>
             `;
 
-            // Insert to top of container and trim bottom rows to keep it smooth
             targetBox.insertBefore(row, targetBox.firstChild);
             if (targetBox.children.length > 25) {
                 targetBox.removeChild(targetBox.lastChild);
             }
 
-            // Flash firewall badge if block occurs
             if (randomSample.bad) {
                 const badge = document.getElementById('global-status');
                 badge.innerText = "⚠️ BREACH BLOCKED";
@@ -395,7 +391,6 @@
             }
         }
 
-        // Loop execution matrix configuration (Generates transaction items periodically)
         setInterval(generateLiveTransaction, 3500);
     </script>
 </body>
