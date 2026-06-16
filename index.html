@@ -5,40 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imran's Core Hub</title>
     <style>
+        :root {
+            --bg: #050206;
+            --accent: #ec4899;
+            --card-bg: rgba(18, 10, 22, 0.8);
+            --text: #ffffff;
+        }
         body { 
-            background-color: #050206; 
-            color: #f8fafc; 
-            font-family: 'Inter', sans-serif; 
-            padding: 40px; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Segoe UI', sans-serif; 
+            padding: 50px; 
             margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .hub-title { 
-            font-size: 2.5rem; 
-            margin-bottom: 40px; 
-            border-bottom: 2px solid #ec4899; 
-            padding-bottom: 10px; 
-            color: #ffffff;
+            font-size: 3rem; 
+            margin-bottom: 50px; 
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
         }
         .project-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            width: 100%;
+            max-width: 1000px;
         }
         .project-card { 
-            background: rgba(18, 10, 22, 0.8); 
-            border: 1px solid #ec4899; 
-            padding: 20px; 
-            border-radius: 12px; 
+            background: var(--card-bg); 
+            border: 1px solid var(--accent); 
+            padding: 30px; 
+            border-radius: 15px; 
             text-decoration: none; 
-            color: white;
-            transition: transform 0.2s, background 0.2s;
+            color: var(--text);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
         }
         .project-card:hover { 
-            transform: translateY(-5px); 
-            background: #1a0f1e; 
+            transform: scale(1.05); 
+            background: #25121e;
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
         }
         .project-card h3 { 
-            color: #ec4899; 
+            color: var(--accent); 
+            font-size: 1.5rem; 
             margin-top: 0; 
         }
     </style>
@@ -47,17 +63,17 @@
     <h1 class="hub-title">CORE SYSTEM HUB</h1>
     
     <div class="project-grid">
-        <a href="#" class="project-card">
+        <a href="https://imran23221.github.io/sentron-smash/" class="project-card">
             <h3>Sentron Smash</h3>
-            <p>Main game project.</p>
+            <p>Access the main game engine dashboard.</p>
         </a>
-        <a href="#" class="project-card">
+        <a href="https://imran23221.github.io/sentron-survival/" class="project-card">
             <h3>Sentron Survival</h3>
-            <p>Core survival module.</p>
+            <p>Core survival module simulation.</p>
         </a>
-        <a href="#" class="project-card">
+        <a href="https://imran23221.github.io/sentron-survival-mobile/" class="project-card">
             <h3>Sentron Survival Mobile</h3>
-            <p>Mobile optimization build.</p>
+            <p>Mobile-optimized survival build.</p>
         </a>
     </div>
 </body>
