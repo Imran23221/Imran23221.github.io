@@ -6,88 +6,60 @@
     <title>Imran | Project Control Center</title>
     <style>
         :root {
-            --bg: #0a0a0c;
-            --surface: #16161a;
-            --primary: #8b5cf6;
-            --text-main: #f8fafc;
+            --bg: #050508;
+            --surface: #0f0f13;
+            --accent: #8b5cf6;
+            --glow: rgba(139, 92, 246, 0.15);
+            --text-main: #ffffff;
             --text-dim: #94a3b8;
-            --border: #27272a;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 40px 20px;
+            padding: 60px 20px;
             display: flex;
             justify-content: center;
         }
 
-        .container {
-            width: 100%;
-            max-width: 900px;
-        }
+        .container { width: 100%; max-width: 900px; }
 
-        header {
-            margin-bottom: 60px;
-        }
+        header { margin-bottom: 60px; }
+        header h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 800; }
+        header p { color: var(--text-dim); font-size: 1.1rem; }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: -0.05em;
-        }
-
-        header p {
-            color: var(--text-dim);
-            font-size: 1.1rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
 
         .card {
             background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 24px;
-            border-radius: 16px;
+            border: 1px solid #1e1e24;
+            padding: 30px;
+            border-radius: 20px;
             text-decoration: none;
             color: inherit;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            border-color: var(--primary);
-            transform: translateY(-4px);
-            background: #1e1e24;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--glow);
+            transform: translateY(-6px);
         }
 
-        .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.25rem;
-        }
+        .card h3 { margin: 0 0 12px 0; color: var(--accent); font-size: 1.3rem; }
+        .card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin: 0; }
 
-        .card p {
+        .footer-status {
+            margin-top: 60px;
+            font-size: 0.8rem;
             color: var(--text-dim);
-            font-size: 0.95rem;
-            margin: 0;
-            line-height: 1.5;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
-
-        .status {
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .dot { height: 8px; width: 8px; background: #22c55e; border-radius: 50%; }
     </style>
 </head>
 <body>
@@ -95,27 +67,26 @@
     <div class="container">
         <header>
             <h1>Project Control Center</h1>
-            <p>Authorized access to deployment environments.</p>
+            <p>Deployment monitoring and environment access.</p>
         </header>
 
         <div class="grid">
             <a href="https://imran23221.github.io/Sentron-Smash/" class="card">
                 <h3>Sentron Smash</h3>
-                <p>Main game engine and physics framework environment.</p>
+                <p>Main game engine deployment and physics calculation environment.</p>
             </a>
-            <a href="https://imran23221.github.io/Sentron-Survivel/" class="card">
-                <h3>Sentron Survival</h3>
-                <p>Core simulation engine for survival mechanics.</p>
+            <a href="https://imran23221.github.io/Sentron-Surviveal/" class="card">
+                <h3>Sentron Surviveal</h3>
+                <p>Core simulation engine for all surviveal-based mechanics.</p>
             </a>
-            <a href="https://imran23221.github.io/Sentron-Survivel-Mobile/" class="card">
-                <h3>Sentron Survival Mobile</h3>
-                <p>Cross-platform mobile optimization build.</p>
+            <a href="https://imran23221.github.io/Sentron-Surviveal-Mobile/" class="card">
+                <h3>Sentron Surviveal Mobile</h3>
+                <p>Cross-platform optimization build for mobile architecture.</p>
             </a>
         </div>
 
-        <div class="status">
-            <div class="dot"></div>
-            System Status: All nodes operational
+        <div class="footer-status">
+            // SYSTEM STATUS: ALL NODES ONLINE //
         </div>
     </div>
 
