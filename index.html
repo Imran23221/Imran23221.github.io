@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentron Hub Matrix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght=500;700;900&family=Inter:wght=300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --bg-base: #02040a;
+            --bg-panel: rgba(10, 15, 30, 0.7);
+            --border-glow: #7c3aed;
+            --text-main: #f1f5f9;
+            --text-muted: #64748b;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.15) 0px, transparent 50%);
+        }
+        .matrix-container {
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            background: linear-gradient(135deg, #a855f7, #06b6d4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            letter-spacing: 0.05em;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+        .project-card {
+            background: var(--bg-panel);
+            border: 1px solid #1e293b;
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(124, 58, 237, 0.1);
+        }
+        .project-card:hover::before {
+            transform: translateX(100%);
+        }
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover .icon-box {
+            transform: scale(1.1);
+        }
+        .project-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+        .project-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        footer {
+            margin-top: 60px;
+            font-size: 0.8rem;
+            color: #334155;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="matrix-container">
+        <h1>Sentron Core</h1>
+        <div class="subtitle">MAIN DIRECTORY INTERFACE</div>
+
+        <div class="project-grid">
+            <!-- PROJECT 1: SMASH -->
+            <a href="https://imran23221.github.io/Sentron-Smash/" class="project-card" style="--accent-color: #ef4444;">
+                <div class="icon-box">🎮</div>
+                <div class="project-title">Smash Edition</div>
+                <div class="project-desc">2D fighting arena game featuring custom combat patterns and environmental mechanics.</div>
+            </a>
+
+            <!-- PROJECT 2: FIREWALL -->
+            <a href="https://imran23221.github.io/sentron-firewall./" class="project-card" style="--accent-color: #10b981;">
+                <div class="icon-box">🛡️</div>
+                <div class="project-title">Firewall Console</div>
+                <div class="project-desc">Interactive defense matrix application designed for core node security configuration.</div>
+            </a>
+
+            <!-- PROJECT 3: SURVIVAL DESKTOP -->
+            <a href="https://imran23221.github.io/Sentron-Survivel/" class="project-card" style="--accent-color: #8b5cf6;">
+                <div class="icon-box">🖥️</div>
+                <div class="project-title">Survival Base</div>
+                <div class="project-desc">Desktop deployment interface built for strategic resource navigation and mapping.</div>
+            </a>
+
+            <!-- PROJECT 4: SURVIVAL MOBILE -->
+            <a href="https://imran23221.github.io/Sentron-Survivel-Mobile/" class="project-card" style="--accent-color: #06b6d4;">
+                <div class="icon-box">📱</div>
+                <div class="project-title">Survival Mobile</div>
+                <div class="project-desc">Mobile viewport optimized environment simulation with reactive touch layouts.</div>
+            </a>
+        </div>
+
+        <footer>ACCESS GRANTED // SYSTEM OPERATIONAL</footer>
+    </div>
+
+</body>
+</html>
